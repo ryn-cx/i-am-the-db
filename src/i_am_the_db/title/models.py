@@ -1,0 +1,116 @@
+# ruff: noqa: D100
+from typing import TYPE_CHECKING
+
+from good_ass_pydantic_integrator import load
+
+from .optional_models import TitleModel as OptionalModel
+from .strict_models import TitleModel as StrictModel
+
+if TYPE_CHECKING:
+    from .strict_models import (
+        Certificate,
+        CountriesOfOrigin,
+        Country,
+        Data,
+        Entitlements,
+        Episodes,
+        ExperimentalFields,
+        Extensions,
+        Fields,
+        Genre,
+        Genres,
+        Metacritic,
+        Metascore,
+        MeterRanking,
+        OriginalTitleText,
+        Plot,
+        PlotText,
+        PrimaryImage,
+        RankChange,
+        RatingsSummary,
+        ReleaseDate,
+        ReleaseYear,
+        Runtime,
+        Season,
+        SpokenLanguage,
+        SpokenLanguages,
+        Title,
+        TitleModel,
+        TitleText,
+        TitleType,
+        TotalEpisodes,
+    )
+else:
+    from .optional_models import (
+        Certificate,
+        CountriesOfOrigin,
+        Country,
+        Data,
+        Entitlements,
+        Episodes,
+        ExperimentalFields,
+        Extensions,
+        Fields,
+        Genre,
+        Genres,
+        Metacritic,
+        Metascore,
+        MeterRanking,
+        OriginalTitleText,
+        Plot,
+        PlotText,
+        PrimaryImage,
+        RankChange,
+        RatingsSummary,
+        ReleaseDate,
+        ReleaseYear,
+        Runtime,
+        Season,
+        SpokenLanguage,
+        SpokenLanguages,
+        Title,
+        TitleModel,
+        TitleText,
+        TitleType,
+        TotalEpisodes,
+    )
+
+__all__ = [
+    "Certificate",
+    "CountriesOfOrigin",
+    "Country",
+    "Data",
+    "Entitlements",
+    "Episodes",
+    "ExperimentalFields",
+    "Extensions",
+    "Fields",
+    "Genre",
+    "Genres",
+    "Metacritic",
+    "Metascore",
+    "MeterRanking",
+    "OriginalTitleText",
+    "Plot",
+    "PlotText",
+    "PrimaryImage",
+    "RankChange",
+    "RatingsSummary",
+    "ReleaseDate",
+    "ReleaseYear",
+    "Runtime",
+    "Season",
+    "SpokenLanguage",
+    "SpokenLanguages",
+    "Title",
+    "TitleModel",
+    "TitleText",
+    "TitleType",
+    "TotalEpisodes",
+    "model_validate_json",
+]
+
+
+def model_validate_json(data: str | bytes | object, log_id: str) -> TitleModel:
+    """Read a downloaded file into TitleModel."""
+    return load.model_validate_json(StrictModel, OptionalModel, data, log_id)
