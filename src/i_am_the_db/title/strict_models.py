@@ -26,8 +26,8 @@ class ReleaseYear(BaseModel):
 
 class ReleaseDate(BaseModel):
     model_config = ConfigDict(defer_build=True)
-    day: int
-    month: int
+    day: int | None
+    month: int | None
     year: int
 
 class Runtime(BaseModel):
@@ -36,7 +36,7 @@ class Runtime(BaseModel):
 
 class RatingsSummary(BaseModel):
     model_config = ConfigDict(defer_build=True)
-    aggregate_rating: int | float = Field(..., alias='aggregateRating')
+    aggregate_rating: int | float | None = Field(..., alias='aggregateRating')
     vote_count: int = Field(..., alias='voteCount')
 
 class RankChange(BaseModel):
@@ -129,9 +129,9 @@ class Title(BaseModel):
     metacritic: Metacritic | None
     certificate: Certificate | None
     genres: Genres
-    plot: Plot
+    plot: Plot | None
     primary_image: PrimaryImage = Field(..., alias='primaryImage')
-    countries_of_origin: CountriesOfOrigin = Field(..., alias='countriesOfOrigin')
+    countries_of_origin: CountriesOfOrigin | None = Field(..., alias='countriesOfOrigin')
     spoken_languages: SpokenLanguages = Field(..., alias='spokenLanguages')
     episodes: Episodes | None
 
