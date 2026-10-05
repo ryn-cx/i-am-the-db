@@ -12,6 +12,7 @@ from get_around import GetAround
 
 from i_am_the_db.exceptions import HTTPError
 from i_am_the_db.title import Title
+from i_am_the_db.title_list import TitleList
 
 logger = getLogger(__name__)
 logger.addHandler(NullHandler())
@@ -42,6 +43,7 @@ class IAmTheDB:
         self.sleep_time = sleep_time
 
         self.title = Title(self)
+        self.title_list = TitleList(self)
 
     # TODO: Validate
     def _headers(self) -> dict[str, str]:

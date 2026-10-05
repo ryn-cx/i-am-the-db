@@ -40,3 +40,15 @@ class TitleNotFoundError(IAmTheDBError):
         self.title_id = title_id
         self.response = response
         super().__init__(f"No title found for {title_id}")
+
+
+# TODO: Validate
+class TitleListNotFoundError(IAmTheDBError):
+    """Raised when the requested list does not exist or is not a list of titles."""
+
+    # TODO: Validate
+    def __init__(self, list_id: str, response: str) -> None:
+        """Initialize with the list id and the originating response."""
+        self.list_id = list_id
+        self.response = response
+        super().__init__(f"No title list found for {list_id}")
