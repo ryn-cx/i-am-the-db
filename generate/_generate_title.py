@@ -6,8 +6,8 @@ import logging
 from get_around import build_client_automatically
 from good_ass_pydantic_integrator.recordings import (
     RecordingId,
-    download_named_missing,
-    load_named_ids,
+    download_missing,
+    load_ids,
     rebuild_model,
 )
 
@@ -26,12 +26,12 @@ class TitleId(RecordingId[IAmTheDB]):
         return client.title.download(self.title_id)
 
 
-TITLES = load_named_ids(GENERATOR_PATHS, MODEL_NAME, TitleId)
+TITLES = load_ids(GENERATOR_PATHS, MODEL_NAME, TitleId)
 
 
 # TODO: Validate
 def generate_title(client: IAmTheDB) -> None:
-    download_named_missing(GENERATOR_PATHS, MODEL_NAME, TITLES, client)
+    download_missing(GENERATOR_PATHS, MODEL_NAME, TITLES, client)
     rebuild_model(GENERATOR_PATHS, MODEL_NAME, TitleId)
 
 
